@@ -9,7 +9,7 @@ on:
 jobs:
   build-analyze-scan:
     name: Build
-    runs-on: [Linux]
+    runs-on: [EKS-Runner]
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
