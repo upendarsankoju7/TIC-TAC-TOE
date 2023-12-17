@@ -5,6 +5,7 @@ on:
     branches:
       - main
 
+
 jobs:
   build-analyze-scan:
     name: Build
@@ -20,6 +21,7 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+
       - name: npm install dependency
         run: npm install
 
@@ -37,9 +39,8 @@ jobs:
 
       - name: Image scan
         run: trivy image upendar07/tic-tac-toe:latest > trivyimage.txt
-  
-        
-deploy:
+
+  deploy:
    needs: build-analyze-scan   
    runs-on: [self-hosted]
    steps:
