@@ -29,8 +29,8 @@ jobs:
       - name: Docker Build and push
         run: |
           docker build -t tic-tac-toe .
-          docker tag tic-tac-toe upendar/tic-tac-toe:latest
+          docker tag tic-tac-toe sevenajay/tic-tac-toe:latest
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          docker push upendar/tic-tac-toe:latest
+          docker push sevenajay/tic-tac-toe:latest
         env:
-          DOCKER_CLI_ACI: 1 
+          DOCKER_CLI_ACI: 1
