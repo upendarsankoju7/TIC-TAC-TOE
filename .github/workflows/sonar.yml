@@ -1,28 +1,37 @@
-name: Docker Build and Push
+name: Build,Analyze,scan
 
 on:
   push:
     branches:
       - main
 
+
 jobs:
-  build-and-push:
+  build-analyze-scan:
+    name: Build
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
 
-    - name: Login to Docker Hub
-      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+      
+      - name: Login to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
     
+      - name: Docker Build and push
+        run: |
+        
+         docker build -t upendar07/image-name-1 -f Dockerfile .
+         docker push upendar07/image-name-1
 
-    - name: Build and push Docker images
-      run: |
-        docker build -t upendar07/upendar-1 -f  .
-        docker push your-username/image-name-1
+         docker build -t upendar07/image-name-2 -f Dockerfile-1 .
+         docker push upendar07/image-name-2
+          
 
-        docker build -t upendar07/upendar-2 -f Dockerfile-1 .
-        docker push your-username/image-name-2
-env:
-     DOCKER_CLI_ACI=1
+          
+
+        env:
+          DOCKER_CLI_ACI: 1
+
