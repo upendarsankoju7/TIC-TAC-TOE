@@ -21,9 +21,15 @@ jobs:
         run: |
           docker build -t tic-tac-toe .
           docker tag tic-tac-toe upendar07/tic-tac-toe:latest
+
+
+          docker build -t docker\youtube-up .
+          docker tag youtube-up upendar07/youtube-up:latest
+            
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
           docker push upendar07/tic-tac-toe:latest
+          docker push upendar07/youtube-up:latest
+
         env:
           DOCKER_CLI_ACI: 1
 
-      
