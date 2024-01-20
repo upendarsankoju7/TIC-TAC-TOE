@@ -28,7 +28,6 @@ jobs:
           docker push upendar07/tic-tac-toe:latest
 
           docker build -t docker\upendar-2 .
-          docker tag upendar-2 upendar07/upendar-2:latest
           docker push upendar07/upendar-2:latest
           
 
